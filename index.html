@@ -383,7 +383,7 @@
   .fm-box .pin{ top:-9px; left:-9px; }
   .fm-header-cell .pin{ top:9px; left:8px; width:20px; height:20px; font-size:10.5px; }
 
-  .pin .pin-tip{
+  .pin-tip{
     position:absolute;
     top:26px; left:0;
     width:max-content; max-width:230px;
@@ -401,20 +401,20 @@
     z-index:20;
     box-shadow:0 6px 18px rgba(0,0,0,0.28);
   }
-  .pin .pin-tip::before{
+  .pin-tip::before{
     content:"";
     position:absolute; top:-5px; left:12px;
     width:9px; height:9px;
     background:var(--ink);
     transform:rotate(45deg);
   }
-  .pin .pin-tip .pin-tip-field{
+  .pin-tip .pin-tip-field{
     display:block;
     font-family:'IBM Plex Mono', monospace;
     font-size:10px; letter-spacing:0.05em; text-transform:uppercase;
     color:#9FD1C7; margin-bottom:3px;
   }
-  .pin:hover .pin-tip, .pin:focus .pin-tip{ opacity:1; visibility:visible; transform:translateY(0); }
+  .pin:hover .pin-tip, .pin:focus .pin-tip, .ff-info:hover .pin-tip, .ff-info:focus .pin-tip{ opacity:1; visibility:visible; transform:translateY(0); }
 
   .table-pin{
     display:inline-flex; align-items:center; justify-content:center;
@@ -479,11 +479,20 @@
   .ff-section-title{
     font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
     color:var(--blue-deep); margin:22px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--grid-line);
+    display:flex; align-items:center; gap:8px;
   }
   .ff-section-title:first-of-type{ margin-top:4px; }
   .ff-grid2{ display:grid; grid-template-columns:1fr 1fr; gap:12px 16px; }
   .ff-field{ display:flex; flex-direction:column; gap:4px; }
-  .ff-field label{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.03em; text-transform:uppercase; color:var(--ink-faint); }
+  .ff-field label{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.03em; text-transform:uppercase; color:var(--ink-faint); display:flex; align-items:center; gap:6px; }
+  .ff-info{
+    position:relative; display:inline-flex; align-items:center; justify-content:center;
+    width:16px; height:16px; border-radius:50%;
+    background:var(--blue-deep); color:#fff;
+    font-family:'IBM Plex Mono', monospace; font-weight:700; font-size:10px;
+    cursor:help; flex-shrink:0; text-transform:none;
+  }
+  .ff-info .pin-tip{ top:22px; left:-4px; }
   .ff-field input[type="text"], .ff-field textarea{
     font-family:'IBM Plex Sans', sans-serif; font-size:13.5px; color:var(--ink);
     border:1.3px solid var(--grid-line); border-radius:6px; padding:8px 10px;
@@ -644,7 +653,6 @@
     <a href="#form-rules">Main Form Rules</a>
     <a href="#inspection-date">Inspection Date</a>
     <a href="#permit-guide">Permit &amp; Code Guide</a>
-    <a href="#fill-out">How to Fill Out the Report</a>
     <a href="#combining">Combining Inspections</a>
     <a href="#building-final">Building Final Rule</a>
     <a href="#fire">Fire / Sprinkler Notes</a>
@@ -746,29 +754,29 @@
 
         <div class="ff-section-title">Header Info</div>
         <div class="ff-grid2">
-          <div class="ff-field"><label>Client</label><input type="text" id="ff_client"></div>
-          <div class="ff-field"><label>Day / Date</label><input type="text" id="ff_day_date"></div>
-          <div class="ff-field"><label>Job Address</label><input type="text" id="ff_job_address"></div>
+          <div class="ff-field"><label>Client<span class="ff-info">i<span class="pin-tip">The contractor or company name Khaled provides.</span></span></label><input type="text" id="ff_client"></div>
+          <div class="ff-field"><label>Day / Date<span class="ff-info">i<span class="pin-tip">The inspection / report date Khaled provides.</span></span></label><input type="text" id="ff_day_date"></div>
+          <div class="ff-field"><label>Job Address<span class="ff-info">i<span class="pin-tip">From Khaled, the plan cover sheet, or the permit sheet.</span></span></label><input type="text" id="ff_job_address"></div>
           <div class="ff-field"><label>Project Name</label><input type="text" id="ff_project_name"></div>
-          <div class="ff-field"><label>General Contractor</label><input type="text" id="ff_general_contractor"></div>
+          <div class="ff-field"><label>General Contractor<span class="ff-info">i<span class="pin-tip">Name Khaled provides — may be the same as the contractor/client name.</span></span></label><input type="text" id="ff_general_contractor"></div>
           <div class="ff-field"><label>3rd Party Inspector</label><input type="text" id="ff_third_party_inspector"></div>
-          <div class="ff-field"><label>Building Permit Number</label><input type="text" id="ff_building_permit_number"></div>
-          <div class="ff-field"><label>Trade Permit Number <i>(if applicable)</i></label><input type="text" id="ff_trade_permit_number"></div>
+          <div class="ff-field"><label>Building Permit Number<span class="ff-info">i<span class="pin-tip">Always enter it, regardless of inspection type.</span></span></label><input type="text" id="ff_building_permit_number"></div>
+          <div class="ff-field"><label>Trade Permit Number <i>(if applicable)</i><span class="ff-info">i<span class="pin-tip">The permit number specific to the inspection being reported.</span></span></label><input type="text" id="ff_trade_permit_number"></div>
         </div>
 
-        <div class="ff-section-title">Inspection Category</div>
+        <div class="ff-section-title">Inspection Category<span class="ff-info">i<span class="pin-tip">Use the second option on the form, unless Khaled says otherwise.</span></span></div>
         <div class="ff-radio-row" data-group="category">
           <label><input type="checkbox" id="ff_cb_100_percent" data-group="category"> Inspections performed on 100% of the individual components/elements.</label>
           <label><input type="checkbox" id="ff_cb_sampling" data-group="category"> Inspections performed on a representative sampling of components/elements.</label>
         </div>
 
-        <div class="ff-section-title">Check One</div>
+        <div class="ff-section-title">Check One<span class="ff-info">i<span class="pin-tip">Select "Regular Inspection" unless Khaled specifically says it's a re-inspection.</span></span></div>
         <div class="ff-radio-row" data-group="regular">
           <label><input type="checkbox" id="ff_cb_regular_inspection" data-group="regular"> Regular Inspection</label>
           <label><input type="checkbox" id="ff_cb_reinspection" data-group="regular"> Re-inspection</label>
         </div>
 
-        <div class="ff-section-title">Inspection Requested — Inspection Type</div>
+        <div class="ff-section-title">Inspection Requested — Inspection Type<span class="ff-info">i<span class="pin-tip">Mark the type and code Khaled provides.</span></span></div>
         <div class="ff-type-grid">
           <div class="ff-type-col">
             <div class="ff-type-col-head">Building (rough)</div>
@@ -827,14 +835,18 @@
           </div>
         </div>
 
-        <div class="ff-section-title">Inspection Results</div>
+        <div class="ff-section-title">Inspection Results<span class="ff-info">i<span class="pin-tip">Passed, Failed, or Partial — exactly as Khaled reports it.</span></span></div>
         <div class="ff-radio-row" data-group="result">
           <label><input type="checkbox" id="ff_cb_passed" data-group="result"> Passed</label>
           <label><input type="checkbox" id="ff_cb_failed" data-group="result"> Failed</label>
           <label><input type="checkbox" id="ff_cb_partial" data-group="result"> Partial</label>
         </div>
+        <div class="callout callout-stop" style="margin-top:12px;">
+          <span class="icon">STOP</span>
+          <span>Never choose the inspection result yourself — always use exactly what Khaled reports.</span>
+        </div>
 
-        <div class="ff-section-title">Comments &amp; Trade Permit Breakdown</div>
+        <div class="ff-section-title">Comments &amp; Trade Permit Breakdown<span class="ff-info">i<span class="pin-tip">List the related trade permit number. For building final, list all related permits.</span></span></div>
         <div class="ff-field" style="margin-bottom:12px;">
           <label>Comments <i>(required on the actual report)</i></label>
           <textarea id="ff_comments"></textarea>
@@ -859,6 +871,62 @@
           <button type="button" class="ff-btn ff-btn-secondary" id="ffClearBtn">Clear Form</button>
           <span class="ff-status" id="ffStatus"></span>
         </div>
+      </div>
+
+      <h3 style="margin-top:32px;">Additional Reference — Not Covered by the Fillable Form</h3>
+      <p class="section-intro">Page 2 of the official PDF isn't part of the report itself — it's upload/submission requirements for the city's Accela portal. Recreated here for reference since there's nothing to fill in on it.</p>
+
+      <div class="form-mock-wrap">
+        <p class="form-mock-label">Recreated Layout — Requirements for Uploading Inspection Report (Page 2)</p>
+        <div class="form-mock">
+          <div class="fm-title">DEPARTMENT OF CITY PLANNING — OFFICE OF BUILDINGS</div>
+          <p class="fm-contact">96 Mitchell Street, Atlanta, Georgia 30303 &nbsp;·&nbsp; Tel: 404.865.8400 &nbsp;·&nbsp; Email: 3rdpartyinspection@atlantaga.gov</p>
+          <h4 class="fm-page2-title">Requirements for Uploading Inspection Report</h4>
+          <p class="fm-statement" style="text-align:center;">To avoid delays in processing, read and follow the requirements below before uploading.</p>
+
+          <div class="fm-box">
+            <span class="fm-box-label">File Name — required before uploading to Accela Citizen Access</span>
+            <ul class="fm-req-list">
+              <li>3P</li>
+              <li>Date of inspection</li>
+              <li>Floor, Level, Suite, etc. — required for commercial projects</li>
+              <li>Inspector Name</li>
+            </ul>
+            <div class="fm-example">Example: <span class="mono">3P, 3-15-22, Suite 3900, John Doe</span></div>
+          </div>
+
+          <div class="fm-box">
+            <span class="fm-box-label">Document Order — assemble the upload package in this order</span>
+            <ol class="fm-req-list">
+              <li>Code inspection report</li>
+              <li>Any supporting documents</li>
+              <li>Application page</li>
+              <li>Affidavit page</li>
+              <li>Inspector Certification</li>
+              <li>Certificate of Insurance Form</li>
+            </ol>
+          </div>
+
+          <div class="fm-please-note">
+            <div class="fm-please-note-title">Please Note</div>
+            <ul>
+              <li>Building Permit Applications submitted after January 1, 2022 must include inspection certification documents, and reports must go in within two days of the inspection.</li>
+              <li>If a report covers multiple inspection types (building, electrical, mechanical, plumbing, fire sprinkler), it must be uploaded separately under each relevant permit number — not filed only under the building permit.</li>
+              <li>Don't upload or submit a report until the full floor/space has been completed.</li>
+              <li>Reports covering half of a space are acceptable.</li>
+              <li>Multiple inspection types can share a single report — e.g. plumbing slab, water service, and sewer line combined into one report instead of three.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-confirm">
+        <span class="icon">FLAG</span>
+        <span>
+          Two things worth confirming with Khaled now that Page 2 is visible:<br><br>
+          <b>1. File naming.</b> This page's required file name format — <b>3P, Date, Floor/Suite, Inspector Name</b> (e.g. <i>3P, 3-15-22, Suite 3900, John Doe</i>) — is different from what's currently written in the File Naming Format section of this SOP (<b>YYYY-MM-DD – Job Address – Inspection Type – Permit Number</b>). Not changing that section until you confirm which format is actually current — this document may be an older or Accela-specific version.<br><br>
+          <b>2. Per-permit uploads.</b> This page says a multi-inspection-type report must be uploaded separately under each relevant permit number in Accela, not just filed under the building permit. That's an Accela/submission-step detail, so it mainly matters once direct city submission goes live (Section 2) — but worth keeping in mind for the tracking spreadsheet Khaled mentioned building.
+        </span>
       </div>
     </section>
 
@@ -927,256 +995,8 @@
       </div>
     </section>
 
-    <section id="fill-out">
-      <h2><span class="num">8</span>How to Fill Out the Report</h2>
-      <p class="section-intro">Recreated to match the real form's actual layout — not the official file itself, just a visual reference. Hover (or tap) any numbered pin to see what goes in that field. Only fields covered by our instructions are pinned; a few fields exist on the real form but aren't part of our process yet (greyed out below) — always use the real form linked in Section 4 when actually preparing a report.</p>
-
-      <div class="form-mock-wrap">
-        <p class="form-mock-label">Recreated Layout — Third-Party Code Compliance Inspection Report (Page 1)</p>
-        <div class="form-mock">
-          <div class="fm-title">DEPARTMENT OF CITY PLANNING — THIRD-PARTY CODE COMPLIANCE INSPECTION REPORT</div>
-
-          <div class="fm-header-table">
-            <div class="fm-header-cell">
-              <span class="pin">1<span class="pin-tip"><span class="pin-tip-field">Client Name</span>The contractor or company name Khaled provides.</span></span>
-              <label>Client</label>
-              <div class="fm-line"></div>
-            </div>
-            <div class="fm-header-cell">
-              <span class="pin">2<span class="pin-tip"><span class="pin-tip-field">Date</span>The inspection / report date Khaled provides.</span></span>
-              <label>Day / Date</label>
-              <div class="fm-line"></div>
-            </div>
-            <div class="fm-header-cell">
-              <span class="pin">3<span class="pin-tip"><span class="pin-tip-field">Job Address</span>From Khaled, the plan cover sheet, or the permit sheet.</span></span>
-              <label>Job Address</label>
-              <div class="fm-line"></div>
-            </div>
-            <div class="fm-header-cell greyed">
-              <label>Project Name</label>
-              <div class="fm-line"></div>
-            </div>
-            <div class="fm-header-cell">
-              <span class="pin">4<span class="pin-tip"><span class="pin-tip-field">General Contractor</span>Name Khaled provides — may be the same as the contractor/client name.</span></span>
-              <label>General Contractor</label>
-              <div class="fm-line"></div>
-            </div>
-            <div class="fm-header-cell greyed">
-              <label>3rd Party Inspector</label>
-              <div class="fm-line"></div>
-            </div>
-            <div class="fm-header-cell prominent">
-              <span class="pin">5<span class="pin-tip"><span class="pin-tip-field">Building Permit Number</span>Always enter it, regardless of inspection type.</span></span>
-              <label>Building Permit Number</label>
-              <div class="fm-line"></div>
-            </div>
-            <div class="fm-header-cell">
-              <span class="pin">6<span class="pin-tip"><span class="pin-tip-field">Trade Permit Number</span>The permit number specific to the inspection being reported.</span></span>
-              <label>Trade Permit Number <i>(if applicable)</i></label>
-              <div class="fm-line"></div>
-            </div>
-          </div>
-
-          <p class="fm-statement">At the request of the client, the project site was visited on the above-referenced date for the purpose of observing code compliance with adopted codes and amendments.</p>
-
-          <div class="fm-box">
-            <span class="pin">8<span class="pin-tip"><span class="pin-tip-field">Inspection Category</span>Use the second option on the form, unless Khaled says otherwise.</span></span>
-            <span class="fm-box-label">Inspection Category (check one)</span>
-            <div class="fm-chk"><span class="box"></span>Inspections performed on 100% of the individual components/elements.</div>
-            <div class="fm-chk marked" style="margin-top:5px;"><span class="box"></span>Inspections performed on a representative sampling of components/elements. <i style="color:var(--ink-faint);">(default — option 2)</i></div>
-          </div>
-
-          <div class="fm-box">
-            <span class="pin">9<span class="pin-tip"><span class="pin-tip-field">Regular / Re-Inspection</span>Select &quot;Regular Inspection&quot; unless Khaled specifically says it's a re-inspection.</span></span>
-            <span class="fm-box-label">Check One</span>
-            <div class="fm-chk-row">
-              <div class="fm-chk marked"><span class="box"></span>Regular Inspection <i style="color:var(--ink-faint);">(default)</i></div>
-              <div class="fm-chk"><span class="box"></span>Re-inspection</div>
-            </div>
-          </div>
-
-          <div class="fm-box" style="position:relative;">
-            <span class="pin">7<span class="pin-tip"><span class="pin-tip-field">Inspection Type</span>Mark the type and code Khaled provides.</span></span>
-            <span class="fm-box-label">Inspection Requested — Inspection Type (check all that apply)</span>
-            <div class="code-grid-wrap">
-              <div class="code-grid-title">Inspection Type — place a check next to the inspection you're requesting</div>
-              <div class="code-grid-scroll">
-              <table class="code-grid">
-                <thead>
-                  <tr>
-                    <th>Building <span style="opacity:.6;">(rough)</span></th>
-                    <th>Electrical <span style="opacity:.6;">(rough)</span></th>
-                    <th>Plumbing <span style="opacity:.6;">(rough)</span></th>
-                    <th class="final-col">Final Inspections</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">100</span> Footing</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">110</span> Foundation Wall</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">115</span> Retaining Wall</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">120</span> Monolithic Slab</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">125</span> Ceiling Cover</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">130</span> Deck Footing</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">135</span> Deck Framing</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">170</span> Insulation</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">180</span> Framing Rough</div>
-                      <div class="cg-sub">Mechanical</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">405</span> Gas Pipe</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">480</span> Mechanical Rough</div>
-                    </td>
-                    <td>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">200</span> Electrical Slab</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">205</span> Electrical Ditch</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">210</span> Temporary Pole</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">220</span> Swimming Pool / Rough Bonding</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">230</span> Wall Cover</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">235</span> Ceiling Cover</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">240</span> Disconnect / Reconnect</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">280</span> Electrical Rough</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">290</span> EV / Photo Voltaic</div>
-                    </td>
-                    <td>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">300</span> Plumbing Slab</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">305</span> Sewer</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">315</span> Water Service</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">330</span> Water Heater</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">335</span> Lawn Sprinkler</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">380</span> Plumbing Rough</div>
-                      <div class="cg-sub" style="color:var(--stamp-red);">Fire Life Safety</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">645</span> Fire Sprinkler Rough</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">640</span> Underground</div>
-                      <div class="cg-item"><span class="cg-box"></span><span class="code">620</span> Tampers &amp; Flows</div>
-                    </td>
-                    <td>
-                      <div class="cg-final-item f-mech">490 — Mechanical Final</div>
-                      <div class="cg-final-item f-elec">290 — Electrical Final</div>
-                      <div class="cg-final-item f-plumb">390 — Plumbing Final</div>
-                      <div class="cg-final-item f-fire">625 — Fire Pump Test</div>
-                      <div class="cg-final-item f-fire">650 — Fire Sprinkler Final</div>
-                      <p class="cg-note">Site &amp; Arborist should be in process between rough &amp; Building Final. Must be approved before Building Final.</p>
-                      <div class="cg-final-item f-building">190 — Building Final</div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              </div>
-            </div>
-          </div>
-
-          <div class="fm-box">
-            <span class="pin">10<span class="pin-tip"><span class="pin-tip-field">Inspection Result</span>Passed, Failed, or Partial — exactly as Khaled reports it.</span></span>
-            <span class="fm-box-label">Inspection Results</span>
-            <div class="fm-chk-row">
-              <div class="fm-chk"><span class="box"></span>Passed</div>
-              <div class="fm-chk"><span class="box"></span>Failed</div>
-              <div class="fm-chk"><span class="box"></span>Partial</div>
-            </div>
-          </div>
-
-          <div class="fm-box" style="margin-bottom:6px;">
-            <span class="pin">11<span class="pin-tip"><span class="pin-tip-field">Comments / Permit Notes</span>List the related trade permit number. For building final, list all related permits.</span></span>
-            <span class="fm-box-label">Comments (required) + Trade Permit Number Breakdown</span>
-            <div class="fm-lines" style="height:32px;"></div>
-            <div class="fm-chk-row" style="margin-top:8px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft);">
-              <span>BM-______</span><span>BE-______</span><span>BP-______</span>
-            </div>
-            <p style="font-size:10.5px; color:var(--ink-faint); margin:4px 0 0;">(For Fire Sprinkler if applicable) BP-______</p>
-          </div>
-
-          <div class="fm-box greyed">
-            <span class="fm-box-label">Site Contact / Inspector's Name / Date / Signature</span>
-            <div class="fm-sig-row">
-              <div class="fm-field"><label>Inspector's Name</label><div class="fm-line"></div></div>
-              <div class="fm-field"><label>Date</label><div class="fm-line"></div></div>
-            </div>
-            <div class="fm-field" style="margin-top:8px;"><label>Signature</label><div class="fm-line"></div></div>
-          </div>
-          <p style="font-size:11px; color:var(--ink-faint); margin:8px 0 0; font-family:'IBM Plex Mono',monospace;">Greyed fields: not yet part of our instructions — see Section 12 for signature-page handling.</p>
-        </div>
-      </div>
-
-      <div class="form-mock-wrap">
-        <p class="form-mock-label">Recreated Layout — Requirements for Uploading Inspection Report (Page 2)</p>
-        <div class="form-mock">
-          <div class="fm-title">DEPARTMENT OF CITY PLANNING — OFFICE OF BUILDINGS</div>
-          <p class="fm-contact">96 Mitchell Street, Atlanta, Georgia 30303 &nbsp;·&nbsp; Tel: 404.865.8400 &nbsp;·&nbsp; Email: 3rdpartyinspection@atlantaga.gov</p>
-          <h4 class="fm-page2-title">Requirements for Uploading Inspection Report</h4>
-          <p class="fm-statement" style="text-align:center;">To avoid delays in processing, read and follow the requirements below before uploading.</p>
-
-          <div class="fm-box">
-            <span class="fm-box-label">File Name — required before uploading to Accela Citizen Access</span>
-            <ul class="fm-req-list">
-              <li>3P</li>
-              <li>Date of inspection</li>
-              <li>Floor, Level, Suite, etc. — required for commercial projects</li>
-              <li>Inspector Name</li>
-            </ul>
-            <div class="fm-example">Example: <span class="mono">3P, 3-15-22, Suite 3900, John Doe</span></div>
-          </div>
-
-          <div class="fm-box">
-            <span class="fm-box-label">Document Order — assemble the upload package in this order</span>
-            <ol class="fm-req-list">
-              <li>Code inspection report</li>
-              <li>Any supporting documents</li>
-              <li>Application page</li>
-              <li>Affidavit page</li>
-              <li>Inspector Certification</li>
-              <li>Certificate of Insurance Form</li>
-            </ol>
-          </div>
-
-          <div class="fm-please-note">
-            <div class="fm-please-note-title">Please Note</div>
-            <ul>
-              <li>Building Permit Applications submitted after January 1, 2022 must include inspection certification documents, and reports must go in within two days of the inspection.</li>
-              <li>If a report covers multiple inspection types (building, electrical, mechanical, plumbing, fire sprinkler), it must be uploaded separately under each relevant permit number — not filed only under the building permit.</li>
-              <li>Don't upload or submit a report until the full floor/space has been completed.</li>
-              <li>Reports covering half of a space are acceptable.</li>
-              <li>Multiple inspection types can share a single report — e.g. plumbing slab, water service, and sewer line combined into one report instead of three.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="callout callout-confirm">
-        <span class="icon">FLAG</span>
-        <span>
-          Two things worth confirming with Khaled now that Page 2 is visible:<br><br>
-          <b>1. File naming.</b> This page's required file name format — <b>3P, Date, Floor/Suite, Inspector Name</b> (e.g. <i>3P, 3-15-22, Suite 3900, John Doe</i>) — is different from what's currently written in the File Naming Format section of this SOP (<b>YYYY-MM-DD – Job Address – Inspection Type – Permit Number</b>). Not changing that section until you confirm which format is actually current — this document may be an older or Accela-specific version.<br><br>
-          <b>2. Per-permit uploads.</b> This page says a multi-inspection-type report must be uploaded separately under each relevant permit number in Accela, not just filed under the building permit. That's an Accela/submission-step detail, so it mainly matters once direct city submission goes live (Section 2) — but worth keeping in mind for the tracking spreadsheet Khaled mentioned building.
-        </span>
-      </div>
-
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th style="width:32%">Field</th><th>What to enter</th></tr></thead>
-          <tbody>
-            <tr><td><span class="table-pin">1</span><b>Client Name</b></td><td>The contractor or company name Khaled provides.</td></tr>
-            <tr><td><span class="table-pin">2</span><b>Date</b></td><td>The inspection / report date Khaled provides.</td></tr>
-            <tr><td><span class="table-pin">3</span><b>Job Address</b></td><td>From Khaled, the plan cover sheet, or the permit sheet.</td></tr>
-            <tr><td><span class="table-pin">4</span><b>General Contractor</b></td><td>Name Khaled provides — may be the same as the contractor/client name.</td></tr>
-            <tr><td><span class="table-pin">5</span><b>Building Permit Number</b></td><td>Always enter it, regardless of inspection type.</td></tr>
-            <tr><td><span class="table-pin">6</span><b>Trade Permit Number</b></td><td>The permit number specific to the inspection being reported.</td></tr>
-            <tr><td><span class="table-pin">7</span><b>Inspection Type</b></td><td>Mark the type and code Khaled provides.</td></tr>
-            <tr><td><span class="table-pin">8</span><b>Inspection Category</b></td><td>Use the second option on the form, unless Khaled says otherwise.</td></tr>
-            <tr><td><span class="table-pin">9</span><b>Regular / Re-Inspection</b></td><td>Select "Regular Inspection" unless Khaled specifically says it's a re-inspection.</td></tr>
-            <tr><td><span class="table-pin">10</span><b>Inspection Result</b></td><td>Passed, Failed, or Partial — exactly as Khaled reports it.</td></tr>
-            <tr><td><span class="table-pin">11</span><b>Comments / Permit Notes</b></td><td>List the related trade permit number. For building final, list all related permits.</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="callout callout-stop">
-        <span class="icon">STOP</span>
-        <span>Never choose the inspection result yourself — always use exactly what Khaled reports.</span>
-      </div>
-    </section>
-
-
     <section id="combining">
-      <h2><span class="num">9</span>Combining Inspections</h2>
+      <h2><span class="num">8</span>Combining Inspections</h2>
       <p>Some inspections can go in one report — but only if Khaled confirms they were completed together on the same visit.</p>
       <p><b>Examples:</b></p>
       <ul>
@@ -1190,7 +1010,7 @@
     </section>
 
     <section id="building-final">
-      <h2><span class="num">10</span>Building Final Rule</h2>
+      <h2><span class="num">9</span>Building Final Rule</h2>
       <div class="callout callout-stop">
         <span class="icon">RULE</span>
         <span>Building final must always be its own, separate report. Never combine it with mechanical final, electrical final, plumbing final, or any other inspection type.</span>
@@ -1206,7 +1026,7 @@
     </section>
 
     <section id="fire">
-      <h2><span class="num">11</span>Fire / Sprinkler Notes</h2>
+      <h2><span class="num">10</span>Fire / Sprinkler Notes</h2>
       <p>We typically don't handle fire inspections — those go through the city or fire marshal directly.</p>
       <p>That said, sprinkler or fire permit details may still need to appear on building final reports.</p>
       <div class="callout callout-confirm">
@@ -1216,13 +1036,13 @@
     </section>
 
     <section id="signature-pages">
-      <h2><span class="num">12</span>Signature &amp; Supporting Pages</h2>
+      <h2><span class="num">11</span>Signature &amp; Supporting Pages</h2>
       <p>Usually only the <b>first page</b> of the report needs updating per inspection.</p>
       <p>The remaining pages hold company details, insurance, certifications, and authorization documents. Khaled provides these or lets us know when they need updating — and they may need to be refreshed yearly.</p>
     </section>
 
     <section id="checklist">
-      <h2><span class="num">13</span>Before Sending the Report</h2>
+      <h2><span class="num">12</span>Before Sending the Report</h2>
       <p class="section-intro">Run through this before sending anything to Khaled. Click an item to check it off (for your own tracking on this page — not saved).</p>
       <ul class="checklist" id="preSendChecklist">
         <li onclick="toggleCheck(this)"><span class="box"></span><span>Correct city form used</span></li>
@@ -1241,7 +1061,7 @@
     </section>
 
     <section id="filenaming">
-      <h2><span class="num">14</span>File Naming Format</h2>
+      <h2><span class="num">13</span>File Naming Format</h2>
       <p>Use this format for every saved report:</p>
       <div class="filename-card">
         <span class="tag">YYYY-MM-DD</span><span class="divider">–</span><span class="tag">Job Address</span><span class="divider">–</span><span class="tag">Inspection Type</span><span class="divider">–</span><span class="tag">Permit Number</span>
@@ -1251,7 +1071,7 @@
     </section>
 
     <section id="open-items">
-      <h2><span class="num">15</span>Items to Confirm With Khaled</h2>
+      <h2><span class="num">14</span>Items to Confirm With Khaled</h2>
       <p class="section-intro">These are open questions — not yet settled. Get answers before treating any related rule above as final.</p>
       <ul>
         <li>Exact permit prefix rules for building permits</li>
