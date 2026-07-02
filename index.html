@@ -238,6 +238,229 @@
     text-transform:uppercase; letter-spacing:0.05em; margin-bottom:3px;
   }
 
+  /* ---------- Form mockup with numbered pins ---------- */
+  .form-mock-wrap{
+    margin:18px 0 26px;
+  }
+  .form-mock-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 10px;
+  }
+  .form-mock{
+    background:var(--paper-raised);
+    border:1.5px solid var(--ink);
+    border-radius: 6px;
+    padding:22px 24px 24px;
+    position:relative;
+    box-shadow: 4px 4px 0 var(--grid-line);
+  }
+  .form-mock .fm-title{
+    font-family:'Oswald', sans-serif; font-weight:600; font-size:13px;
+    text-align:center; letter-spacing:0.03em;
+    color:var(--ink-soft);
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px; margin-bottom:16px;
+  }
+  .fm-row{ display:flex; gap:14px; margin-bottom:12px; }
+  .fm-field{ flex:1; position:relative; }
+  .fm-field label{
+    display:block; font-family:'IBM Plex Mono', monospace; font-size:10px;
+    letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-faint);
+    margin-bottom:4px;
+  }
+  .fm-field .fm-line{
+    border-bottom:1.3px solid var(--ink-soft);
+    height:20px;
+  }
+  .fm-field.prominent .fm-line{ border-bottom-width:2px; border-color:var(--ink); }
+  .fm-field.prominent label{ color:var(--ink); font-weight:600; }
+
+  .fm-header-table{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border:1.3px solid var(--ink-soft);
+    border-radius:6px;
+    margin:14px 0 14px;
+  }
+  .fm-header-cell{
+    position:relative;
+    padding:9px 12px 9px 34px;
+    border-bottom:1px solid var(--grid-line);
+    border-right:1px solid var(--grid-line);
+    min-width:0;
+  }
+  .fm-header-cell:nth-child(2n){ border-right:none; }
+  .fm-header-cell:nth-last-child(-n+2){ border-bottom:none; }
+  .fm-header-cell label{
+    display:block; font-family:'IBM Plex Mono', monospace; font-size:10px;
+    letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-faint);
+    margin-bottom:4px;
+    word-break:break-word;
+  }
+  .fm-header-cell .fm-line{ border-bottom:1.3px solid var(--ink-soft); height:18px; }
+  .fm-header-cell.prominent{ background:#F4F8F8; }
+  .fm-header-cell.prominent label{ color:var(--ink); font-weight:600; }
+  .fm-header-cell.prominent .fm-line{ border-bottom-width:2px; border-color:var(--ink); }
+  .fm-header-cell.greyed{ opacity:0.45; }
+  .fm-header-cell.greyed .fm-line{ border-style:dashed; }
+
+  .fm-statement{
+    font-size:11.5px; color:var(--ink-faint); font-style:italic;
+    line-height:1.5; margin:0 0 14px; padding:0 2px;
+  }
+
+  /* ---------- Page 2 recreation ---------- */
+  .fm-contact{
+    text-align:center; font-size:10.5px; color:var(--ink-faint);
+    margin:-10px 0 18px; font-family:'IBM Plex Mono', monospace;
+  }
+  .fm-page2-title{
+    font-family:'Oswald', sans-serif; font-weight:600; font-size:16px;
+    color:var(--ink); text-align:center; margin:0 0 6px;
+  }
+  .fm-req-list{ margin:0 0 10px; padding-left:20px; font-size:13px; color:var(--ink-soft); }
+  .fm-req-list li{ margin-bottom:4px; }
+  .fm-example{
+    font-size:12.5px; background:#F4F8F8; border:1px dashed var(--grid-line);
+    border-radius:6px; padding:8px 10px; color:var(--ink-soft);
+  }
+  .fm-example .mono{ font-family:'IBM Plex Mono', monospace; color:var(--blue-deep); font-weight:600; }
+  .fm-please-note{
+    border:1.5px solid var(--stamp-red);
+    background:var(--stamp-red-bg);
+    border-radius:8px;
+    padding:14px 16px;
+    margin-top:4px;
+  }
+  .fm-please-note-title{
+    font-family:'Oswald', sans-serif; font-weight:700; font-size:13px;
+    color:var(--stamp-red); text-transform:uppercase; letter-spacing:0.04em;
+    margin-bottom:8px;
+  }
+  .fm-please-note ul{ margin:0; padding-left:18px; font-size:12.5px; color:#7A2C21; }
+  .fm-please-note li{ margin-bottom:7px; line-height:1.5; }
+  .fm-please-note li:last-child{ margin-bottom:0; }
+  .fm-box{
+    border:1.3px solid var(--grid-line);
+    border-radius:6px;
+    padding:10px 12px;
+    margin-bottom:12px;
+    background:#FBFCFB;
+    position:relative;
+  }
+  .fm-box.greyed{ opacity:0.5; background:transparent; }
+  .fm-box.greyed .fm-line{ border-style:dashed; }
+  .fm-box .fm-box-label{
+    font-family:'IBM Plex Mono', monospace; font-size:10px;
+    letter-spacing:0.04em; text-transform:uppercase; color:var(--ink-faint);
+    margin-bottom:8px; display:block;
+  }
+  .fm-chk-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:6px 18px; }
+  .fm-chk{ display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--ink-soft); }
+  .fm-chk .box{ width:13px; height:13px; border:1.5px solid var(--ink-soft); border-radius:3px; flex-shrink:0; }
+  .fm-chk.marked .box{ background:var(--blue-deep); border-color:var(--blue-deep); position:relative; }
+  .fm-chk-row{ display:flex; gap:22px; flex-wrap:wrap; }
+  .fm-lines{ height:44px; background:repeating-linear-gradient(to bottom, transparent, transparent 13px, var(--grid-line) 13px, var(--grid-line) 14px); }
+  .fm-sig-row{ display:flex; gap:14px; margin-top:4px; opacity:0.55; }
+
+  .pin{
+    position:absolute;
+    top:-9px; left:-9px;
+    width:22px; height:22px;
+    border-radius:50%;
+    background:var(--stamp-red);
+    color:#fff;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:700; font-size:11.5px;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--paper-raised);
+    box-shadow:0 1px 4px rgba(0,0,0,0.25);
+    z-index:2;
+    cursor:help;
+  }
+  .fm-box .pin{ top:-9px; left:-9px; }
+  .fm-header-cell .pin{ top:9px; left:8px; width:20px; height:20px; font-size:10.5px; }
+
+  .pin .pin-tip{
+    position:absolute;
+    top:26px; left:0;
+    width:max-content; max-width:230px;
+    background:var(--ink);
+    color:#F2F5F5;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:12px; font-weight:500; line-height:1.5;
+    text-align:left;
+    padding:9px 11px;
+    border-radius:8px;
+    opacity:0; visibility:hidden;
+    transform:translateY(-5px);
+    transition:opacity .15s ease, transform .15s ease, visibility .15s;
+    pointer-events:none;
+    z-index:20;
+    box-shadow:0 6px 18px rgba(0,0,0,0.28);
+  }
+  .pin .pin-tip::before{
+    content:"";
+    position:absolute; top:-5px; left:12px;
+    width:9px; height:9px;
+    background:var(--ink);
+    transform:rotate(45deg);
+  }
+  .pin .pin-tip .pin-tip-field{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px; letter-spacing:0.05em; text-transform:uppercase;
+    color:#9FD1C7; margin-bottom:3px;
+  }
+  .pin:hover .pin-tip, .pin:focus .pin-tip{ opacity:1; visibility:visible; transform:translateY(0); }
+
+  .table-pin{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:19px; height:19px; border-radius:50%;
+    background:var(--stamp-red); color:#fff;
+    font-family:'IBM Plex Mono', monospace; font-weight:700; font-size:10.5px;
+    margin-right:8px; flex-shrink:0;
+  }
+
+  /* ---------- Inspection type code grid ---------- */
+  .code-grid-wrap{
+    border:1.3px solid var(--ink);
+    border-radius:6px;
+    overflow:hidden;
+    margin-top:2px;
+  }
+  .code-grid-title{
+    background:var(--blue-deep); color:#fff;
+    font-family:'Oswald', sans-serif; font-weight:600; font-size:12.5px;
+    text-align:center; padding:8px; letter-spacing:0.02em;
+  }
+  .code-grid-scroll{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table.code-grid{ width:100%; min-width:640px; border-collapse:collapse; font-size:11.5px; }
+  table.code-grid th{
+    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.04em;
+    text-transform:uppercase; text-align:left; padding:6px 8px;
+    background:#EAF0F1; color:var(--blue-deep); border:1px solid var(--grid-line);
+  }
+  table.code-grid th.final-col{ background:var(--stamp-red-bg); color:var(--stamp-red); }
+  table.code-grid td{ vertical-align:top; padding:6px 8px; border:1px solid var(--grid-line); }
+  table.code-grid .cg-sub{
+    font-family:'IBM Plex Mono', monospace; font-size:9.5px; letter-spacing:0.05em;
+    text-transform:uppercase; color:var(--amber); margin:6px 0 3px; font-weight:600;
+  }
+  table.code-grid .cg-sub:first-child{ margin-top:0; }
+  table.code-grid .cg-item{ display:flex; align-items:baseline; gap:5px; margin-bottom:2px; color:var(--ink-soft); }
+  table.code-grid .cg-item .cg-box{ width:9px; height:9px; border:1.2px solid var(--ink-faint); border-radius:2px; flex-shrink:0; margin-top:2px; }
+  table.code-grid .cg-item .code{ font-family:'IBM Plex Mono', monospace; color:var(--ink); font-weight:600; }
+  table.code-grid .cg-final-item{ font-size:11px; padding:4px 6px; border-radius:5px; margin-bottom:4px; font-weight:600; }
+  table.code-grid .cg-final-item.f-mech{ background:#EAF3EC; color:#2A5738; }
+  table.code-grid .cg-final-item.f-elec{ background:var(--amber-bg); color:#6B4C13; }
+  table.code-grid .cg-final-item.f-plumb{ background:#E6EEF3; color:var(--blue-deep); }
+  table.code-grid .cg-final-item.f-fire{ background:var(--stamp-red-bg); color:var(--stamp-red); }
+  table.code-grid .cg-final-item.f-building{ background:var(--blue-deep); color:#fff; font-size:11.5px; text-align:center; margin-top:8px; }
+  table.code-grid .cg-note{ font-size:10px; color:var(--ink-faint); margin:6px 0; line-height:1.4; }
+
   /* ---------- Tables ---------- */
   .table-wrap{ overflow-x:auto; margin:18px 0; border:1.5px solid var(--grid-line); border-radius: var(--radius); background:var(--paper-raised); }
   table{ width:100%; border-collapse:collapse; font-size:14px; }
@@ -316,6 +539,21 @@
   #backToTop svg{ width:20px; height:20px; }
   @media (max-width: 900px){
     #backToTop{ right:16px; bottom:16px; }
+  }
+
+  /* ---------- Form mockup responsiveness ---------- */
+  @media (max-width: 640px){
+    .form-mock{ padding:18px 14px 20px; }
+    .fm-header-table{ grid-template-columns:1fr; }
+    .fm-header-cell:nth-child(2n){ border-right:none; }
+    .fm-header-cell{ border-right:none !important; }
+    .fm-header-cell:nth-last-child(-n+2){ border-bottom:1px solid var(--grid-line); }
+    .fm-header-cell:last-child{ border-bottom:none; }
+    .fm-chk-grid{ grid-template-columns:1fr; }
+    .fm-chk-row{ flex-direction:column; gap:8px; }
+    .fm-sig-row{ flex-direction:column; gap:12px; }
+    table.compare{ font-size:12.5px; }
+    table.compare td{ padding:10px 10px; }
   }
 </style>
 </head>
@@ -507,21 +745,242 @@
 
     <section id="fill-out">
       <h2><span class="num">8</span>How to Fill Out the Report</h2>
+      <p class="section-intro">Recreated to match the real form's actual layout — not the official file itself, just a visual reference. Hover (or tap) any numbered pin to see what goes in that field. Only fields covered by our instructions are pinned; a few fields exist on the real form but aren't part of our process yet (greyed out below) — always use the real form linked in Section 4 when actually preparing a report.</p>
+
+      <div class="form-mock-wrap">
+        <p class="form-mock-label">Recreated Layout — Third-Party Code Compliance Inspection Report (Page 1)</p>
+        <div class="form-mock">
+          <div class="fm-title">DEPARTMENT OF CITY PLANNING — THIRD-PARTY CODE COMPLIANCE INSPECTION REPORT</div>
+
+          <div class="fm-header-table">
+            <div class="fm-header-cell">
+              <span class="pin">1<span class="pin-tip"><span class="pin-tip-field">Client Name</span>The contractor or company name Khaled provides.</span></span>
+              <label>Client</label>
+              <div class="fm-line"></div>
+            </div>
+            <div class="fm-header-cell">
+              <span class="pin">2<span class="pin-tip"><span class="pin-tip-field">Date</span>The inspection / report date Khaled provides.</span></span>
+              <label>Day / Date</label>
+              <div class="fm-line"></div>
+            </div>
+            <div class="fm-header-cell">
+              <span class="pin">3<span class="pin-tip"><span class="pin-tip-field">Job Address</span>From Khaled, the plan cover sheet, or the permit sheet.</span></span>
+              <label>Job Address</label>
+              <div class="fm-line"></div>
+            </div>
+            <div class="fm-header-cell greyed">
+              <label>Project Name</label>
+              <div class="fm-line"></div>
+            </div>
+            <div class="fm-header-cell">
+              <span class="pin">4<span class="pin-tip"><span class="pin-tip-field">General Contractor</span>Name Khaled provides — may be the same as the contractor/client name.</span></span>
+              <label>General Contractor</label>
+              <div class="fm-line"></div>
+            </div>
+            <div class="fm-header-cell greyed">
+              <label>3rd Party Inspector</label>
+              <div class="fm-line"></div>
+            </div>
+            <div class="fm-header-cell prominent">
+              <span class="pin">5<span class="pin-tip"><span class="pin-tip-field">Building Permit Number</span>Always enter it, regardless of inspection type.</span></span>
+              <label>Building Permit Number</label>
+              <div class="fm-line"></div>
+            </div>
+            <div class="fm-header-cell">
+              <span class="pin">6<span class="pin-tip"><span class="pin-tip-field">Trade Permit Number</span>The permit number specific to the inspection being reported.</span></span>
+              <label>Trade Permit Number <i>(if applicable)</i></label>
+              <div class="fm-line"></div>
+            </div>
+          </div>
+
+          <p class="fm-statement">At the request of the client, the project site was visited on the above-referenced date for the purpose of observing code compliance with adopted codes and amendments.</p>
+
+          <div class="fm-box">
+            <span class="pin">8<span class="pin-tip"><span class="pin-tip-field">Inspection Category</span>Use the second option on the form, unless Khaled says otherwise.</span></span>
+            <span class="fm-box-label">Inspection Category (check one)</span>
+            <div class="fm-chk"><span class="box"></span>Inspections performed on 100% of the individual components/elements.</div>
+            <div class="fm-chk marked" style="margin-top:5px;"><span class="box"></span>Inspections performed on a representative sampling of components/elements. <i style="color:var(--ink-faint);">(default — option 2)</i></div>
+          </div>
+
+          <div class="fm-box">
+            <span class="pin">9<span class="pin-tip"><span class="pin-tip-field">Regular / Re-Inspection</span>Select &quot;Regular Inspection&quot; unless Khaled specifically says it's a re-inspection.</span></span>
+            <span class="fm-box-label">Check One</span>
+            <div class="fm-chk-row">
+              <div class="fm-chk marked"><span class="box"></span>Regular Inspection <i style="color:var(--ink-faint);">(default)</i></div>
+              <div class="fm-chk"><span class="box"></span>Re-inspection</div>
+            </div>
+          </div>
+
+          <div class="fm-box" style="position:relative;">
+            <span class="pin">7<span class="pin-tip"><span class="pin-tip-field">Inspection Type</span>Mark the type and code Khaled provides.</span></span>
+            <span class="fm-box-label">Inspection Requested — Inspection Type (check all that apply)</span>
+            <div class="code-grid-wrap">
+              <div class="code-grid-title">Inspection Type — place a check next to the inspection you're requesting</div>
+              <div class="code-grid-scroll">
+              <table class="code-grid">
+                <thead>
+                  <tr>
+                    <th>Building <span style="opacity:.6;">(rough)</span></th>
+                    <th>Electrical <span style="opacity:.6;">(rough)</span></th>
+                    <th>Plumbing <span style="opacity:.6;">(rough)</span></th>
+                    <th class="final-col">Final Inspections</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">100</span> Footing</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">110</span> Foundation Wall</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">115</span> Retaining Wall</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">120</span> Monolithic Slab</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">125</span> Ceiling Cover</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">130</span> Deck Footing</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">135</span> Deck Framing</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">170</span> Insulation</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">180</span> Framing Rough</div>
+                      <div class="cg-sub">Mechanical</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">405</span> Gas Pipe</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">480</span> Mechanical Rough</div>
+                    </td>
+                    <td>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">200</span> Electrical Slab</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">205</span> Electrical Ditch</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">210</span> Temporary Pole</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">220</span> Swimming Pool / Rough Bonding</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">230</span> Wall Cover</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">235</span> Ceiling Cover</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">240</span> Disconnect / Reconnect</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">280</span> Electrical Rough</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">290</span> EV / Photo Voltaic</div>
+                    </td>
+                    <td>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">300</span> Plumbing Slab</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">305</span> Sewer</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">315</span> Water Service</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">330</span> Water Heater</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">335</span> Lawn Sprinkler</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">380</span> Plumbing Rough</div>
+                      <div class="cg-sub" style="color:var(--stamp-red);">Fire Life Safety</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">645</span> Fire Sprinkler Rough</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">640</span> Underground</div>
+                      <div class="cg-item"><span class="cg-box"></span><span class="code">620</span> Tampers &amp; Flows</div>
+                    </td>
+                    <td>
+                      <div class="cg-final-item f-mech">490 — Mechanical Final</div>
+                      <div class="cg-final-item f-elec">290 — Electrical Final</div>
+                      <div class="cg-final-item f-plumb">390 — Plumbing Final</div>
+                      <div class="cg-final-item f-fire">625 — Fire Pump Test</div>
+                      <div class="cg-final-item f-fire">650 — Fire Sprinkler Final</div>
+                      <p class="cg-note">Site &amp; Arborist should be in process between rough &amp; Building Final. Must be approved before Building Final.</p>
+                      <div class="cg-final-item f-building">190 — Building Final</div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="fm-box">
+            <span class="pin">10<span class="pin-tip"><span class="pin-tip-field">Inspection Result</span>Passed, Failed, or Partial — exactly as Khaled reports it.</span></span>
+            <span class="fm-box-label">Inspection Results</span>
+            <div class="fm-chk-row">
+              <div class="fm-chk"><span class="box"></span>Passed</div>
+              <div class="fm-chk"><span class="box"></span>Failed</div>
+              <div class="fm-chk"><span class="box"></span>Partial</div>
+            </div>
+          </div>
+
+          <div class="fm-box" style="margin-bottom:6px;">
+            <span class="pin">11<span class="pin-tip"><span class="pin-tip-field">Comments / Permit Notes</span>List the related trade permit number. For building final, list all related permits.</span></span>
+            <span class="fm-box-label">Comments (required) + Trade Permit Number Breakdown</span>
+            <div class="fm-lines" style="height:32px;"></div>
+            <div class="fm-chk-row" style="margin-top:8px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft);">
+              <span>BM-______</span><span>BE-______</span><span>BP-______</span>
+            </div>
+            <p style="font-size:10.5px; color:var(--ink-faint); margin:4px 0 0;">(For Fire Sprinkler if applicable) BP-______</p>
+          </div>
+
+          <div class="fm-box greyed">
+            <span class="fm-box-label">Site Contact / Inspector's Name / Date / Signature</span>
+            <div class="fm-sig-row">
+              <div class="fm-field"><label>Inspector's Name</label><div class="fm-line"></div></div>
+              <div class="fm-field"><label>Date</label><div class="fm-line"></div></div>
+            </div>
+            <div class="fm-field" style="margin-top:8px;"><label>Signature</label><div class="fm-line"></div></div>
+          </div>
+          <p style="font-size:11px; color:var(--ink-faint); margin:8px 0 0; font-family:'IBM Plex Mono',monospace;">Greyed fields: not yet part of our instructions — see Section 12 for signature-page handling.</p>
+        </div>
+      </div>
+
+      <div class="form-mock-wrap">
+        <p class="form-mock-label">Recreated Layout — Requirements for Uploading Inspection Report (Page 2)</p>
+        <div class="form-mock">
+          <div class="fm-title">DEPARTMENT OF CITY PLANNING — OFFICE OF BUILDINGS</div>
+          <p class="fm-contact">96 Mitchell Street, Atlanta, Georgia 30303 &nbsp;·&nbsp; Tel: 404.865.8400 &nbsp;·&nbsp; Email: 3rdpartyinspection@atlantaga.gov</p>
+          <h4 class="fm-page2-title">Requirements for Uploading Inspection Report</h4>
+          <p class="fm-statement" style="text-align:center;">To avoid delays in processing, read and follow the requirements below before uploading.</p>
+
+          <div class="fm-box">
+            <span class="fm-box-label">File Name — required before uploading to Accela Citizen Access</span>
+            <ul class="fm-req-list">
+              <li>3P</li>
+              <li>Date of inspection</li>
+              <li>Floor, Level, Suite, etc. — required for commercial projects</li>
+              <li>Inspector Name</li>
+            </ul>
+            <div class="fm-example">Example: <span class="mono">3P, 3-15-22, Suite 3900, John Doe</span></div>
+          </div>
+
+          <div class="fm-box">
+            <span class="fm-box-label">Document Order — assemble the upload package in this order</span>
+            <ol class="fm-req-list">
+              <li>Code inspection report</li>
+              <li>Any supporting documents</li>
+              <li>Application page</li>
+              <li>Affidavit page</li>
+              <li>Inspector Certification</li>
+              <li>Certificate of Insurance Form</li>
+            </ol>
+          </div>
+
+          <div class="fm-please-note">
+            <div class="fm-please-note-title">Please Note</div>
+            <ul>
+              <li>Building Permit Applications submitted after January 1, 2022 must include inspection certification documents, and reports must go in within two days of the inspection.</li>
+              <li>If a report covers multiple inspection types (building, electrical, mechanical, plumbing, fire sprinkler), it must be uploaded separately under each relevant permit number — not filed only under the building permit.</li>
+              <li>Don't upload or submit a report until the full floor/space has been completed.</li>
+              <li>Reports covering half of a space are acceptable.</li>
+              <li>Multiple inspection types can share a single report — e.g. plumbing slab, water service, and sewer line combined into one report instead of three.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-confirm">
+        <span class="icon">FLAG</span>
+        <span>
+          Two things worth confirming with Khaled now that Page 2 is visible:<br><br>
+          <b>1. File naming.</b> This page's required file name format — <b>3P, Date, Floor/Suite, Inspector Name</b> (e.g. <i>3P, 3-15-22, Suite 3900, John Doe</i>) — is different from what's currently written in the File Naming Format section of this SOP (<b>YYYY-MM-DD – Job Address – Inspection Type – Permit Number</b>). Not changing that section until you confirm which format is actually current — this document may be an older or Accela-specific version.<br><br>
+          <b>2. Per-permit uploads.</b> This page says a multi-inspection-type report must be uploaded separately under each relevant permit number in Accela, not just filed under the building permit. That's an Accela/submission-step detail, so it mainly matters once direct city submission goes live (Section 2) — but worth keeping in mind for the tracking spreadsheet Khaled mentioned building.
+        </span>
+      </div>
+
       <div class="table-wrap">
         <table>
           <thead><tr><th style="width:32%">Field</th><th>What to enter</th></tr></thead>
           <tbody>
-            <tr><td><b>Client Name</b></td><td>The contractor or company name Khaled provides.</td></tr>
-            <tr><td><b>Date</b></td><td>The inspection / report date Khaled provides.</td></tr>
-            <tr><td><b>Job Address</b></td><td>From Khaled, the plan cover sheet, or the permit sheet.</td></tr>
-            <tr><td><b>General Contractor</b></td><td>Name Khaled provides — may be the same as the contractor/client name.</td></tr>
-            <tr><td><b>Building Permit Number</b></td><td>Always enter it, regardless of inspection type.</td></tr>
-            <tr><td><b>Trade Permit Number</b></td><td>The permit number specific to the inspection being reported.</td></tr>
-            <tr><td><b>Inspection Type</b></td><td>Mark the type and code Khaled provides.</td></tr>
-            <tr><td><b>Inspection Category</b></td><td>Use the second option on the form, unless Khaled says otherwise.</td></tr>
-            <tr><td><b>Regular / Re-Inspection</b></td><td>Select "Regular Inspection" unless Khaled specifically says it's a re-inspection.</td></tr>
-            <tr><td><b>Inspection Result</b></td><td>Passed, Failed, or Partial — exactly as Khaled reports it.</td></tr>
-            <tr><td><b>Comments / Permit Notes</b></td><td>List the related trade permit number. For building final, list all related permits.</td></tr>
+            <tr><td><span class="table-pin">1</span><b>Client Name</b></td><td>The contractor or company name Khaled provides.</td></tr>
+            <tr><td><span class="table-pin">2</span><b>Date</b></td><td>The inspection / report date Khaled provides.</td></tr>
+            <tr><td><span class="table-pin">3</span><b>Job Address</b></td><td>From Khaled, the plan cover sheet, or the permit sheet.</td></tr>
+            <tr><td><span class="table-pin">4</span><b>General Contractor</b></td><td>Name Khaled provides — may be the same as the contractor/client name.</td></tr>
+            <tr><td><span class="table-pin">5</span><b>Building Permit Number</b></td><td>Always enter it, regardless of inspection type.</td></tr>
+            <tr><td><span class="table-pin">6</span><b>Trade Permit Number</b></td><td>The permit number specific to the inspection being reported.</td></tr>
+            <tr><td><span class="table-pin">7</span><b>Inspection Type</b></td><td>Mark the type and code Khaled provides.</td></tr>
+            <tr><td><span class="table-pin">8</span><b>Inspection Category</b></td><td>Use the second option on the form, unless Khaled says otherwise.</td></tr>
+            <tr><td><span class="table-pin">9</span><b>Regular / Re-Inspection</b></td><td>Select "Regular Inspection" unless Khaled specifically says it's a re-inspection.</td></tr>
+            <tr><td><span class="table-pin">10</span><b>Inspection Result</b></td><td>Passed, Failed, or Partial — exactly as Khaled reports it.</td></tr>
+            <tr><td><span class="table-pin">11</span><b>Comments / Permit Notes</b></td><td>List the related trade permit number. For building final, list all related permits.</td></tr>
           </tbody>
         </table>
       </div>
@@ -530,6 +989,7 @@
         <span>Never choose the inspection result yourself — always use exactly what Khaled reports.</span>
       </div>
     </section>
+
 
     <section id="combining">
       <h2><span class="num">9</span>Combining Inspections</h2>
