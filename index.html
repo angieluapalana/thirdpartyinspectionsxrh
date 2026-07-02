@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City of Atlanta Third-Party Inspection Reports — SOP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1F5F6;
+    --paper-raised:#FFFFFF;
+    --grid-line:#D3DFE2;
+    --ink:#16232B;
+    --ink-soft:#4B5D64;
+    --ink-faint:#7C8C92;
+    --blue:#2C5F7C;
+    --blue-deep:#1C4257;
+    --stamp-red:#A23B2E;
+    --stamp-red-bg:#FBEDEA;
+    --amber:#9C6B1F;
+    --amber-bg:#FBF1DE;
+    --green:#3F7A54;
+    --green-bg:#EAF3EC;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+  }
+  .bg-grid{
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* ---------- Layout ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns: 280px 1fr;
+    max-width:1240px;
+    margin:0 auto;
+  }
+  @media (max-width: 900px){
+    .shell{ grid-template-columns: 1fr; }
+    nav.toc{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    grid-column: 1 / -1;
+    padding: 56px 48px 40px;
+    border-bottom: 2px solid var(--ink);
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero .grid-overlay{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity:0.55;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+  }
+  .hero-inner{ position:relative; max-width:820px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--blue-deep);
+    background:var(--paper-raised);
+    border:1.5px solid var(--blue-deep);
+    padding:5px 12px; border-radius:20px;
+    margin-bottom:18px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--stamp-red);}
+  h1{
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size: clamp(30px, 4.2vw, 44px);
+    letter-spacing:0.01em;
+    margin:0 0 12px;
+    color:var(--ink);
+  }
+  .hero-sub{
+    font-size:16.5px;
+    color:var(--ink-soft);
+    max-width:640px;
+    margin:0 0 22px;
+  }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+  }
+  .meta-chip{
+    background:var(--paper-raised);
+    border:1px solid var(--grid-line);
+    border-radius:6px;
+    padding:6px 10px;
+    color:var(--ink-soft);
+  }
+  .meta-chip b{ color:var(--ink); }
+
+  /* ---------- TOC ---------- */
+  nav.toc{
+    padding: 32px 24px;
+    position:sticky; top:0; align-self:start;
+    max-height:100vh; overflow-y:auto;
+    border-right:1.5px solid var(--grid-line);
+  }
+  nav.toc .toc-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 14px 4px;
+  }
+  nav.toc a{
+    display:block;
+    font-size:14px;
+    color:var(--ink-soft);
+    text-decoration:none;
+    padding:7px 10px;
+    border-radius:7px;
+    margin-bottom:2px;
+    border-left:2.5px solid transparent;
+    transition: background .15s, color .15s, border-color .15s;
+  }
+  nav.toc a:hover{ background:var(--paper-raised); color:var(--ink); }
+  nav.toc a.active{
+    color:var(--blue-deep);
+    border-left-color:var(--blue-deep);
+    background:var(--paper-raised);
+    font-weight:600;
+  }
+
+  /* ---------- Main content ---------- */
+  main{ padding: 44px 48px 100px; max-width: 860px; }
+  section{ margin-bottom:52px; scroll-margin-top:20px; }
+  section h2{
+    font-family:'Oswald', sans-serif;
+    font-size:24px; font-weight:600;
+    display:flex; align-items:center; gap:12px;
+    margin:0 0 6px;
+    color:var(--blue-deep);
+  }
+  section h2 .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; color:#fff;
+    background:var(--blue-deep);
+    border-radius:6px;
+    padding:3px 8px;
+  }
+  section .section-intro{ color:var(--ink-soft); margin:0 0 22px; font-size:15px; }
+  h3{ font-family:'Oswald', sans-serif; font-size:17px; font-weight:600; margin:26px 0 10px; color:var(--ink);}
+  p{ margin:0 0 14px; font-size:15px; }
+  ul, ol{ margin:0 0 16px; padding-left:22px; font-size:15px; }
+  li{ margin-bottom:6px; }
+
+  /* ---------- Callouts ---------- */
+  .callout{
+    border-radius: var(--radius);
+    padding:16px 18px;
+    margin: 18px 0;
+    font-size:14.5px;
+    display:flex; gap:12px;
+    border:1.5px solid;
+  }
+  .callout .icon{ font-family:'IBM Plex Mono', monospace; font-weight:700; font-size:13px; flex-shrink:0; margin-top:1px;}
+  .callout-confirm{ background:var(--amber-bg); border-color:#E3C077; color:#6B4C13; }
+  .callout-stop{ background:var(--stamp-red-bg); border-color:#E0AFA6; color:#7A2C21; }
+  .callout-note{ background:var(--green-bg); border-color:#B7D6BF; color:#2A5738; }
+
+  /* ---------- Stamp badge (signature element) ---------- */
+  .stamp{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:700; font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+    border:2px solid var(--stamp-red);
+    color:var(--stamp-red);
+    border-radius:6px;
+    padding:7px 12px;
+    transform: rotate(-1.4deg);
+    background: repeating-linear-gradient(135deg, transparent, transparent 5px, rgba(162,59,46,0.045) 5px, rgba(162,59,46,0.045) 10px);
+  }
+  .stamp.amber{ border-color:var(--amber); color:var(--amber); background:repeating-linear-gradient(135deg, transparent, transparent 5px, rgba(156,107,31,0.05) 5px, rgba(156,107,31,0.05) 10px);}
+  .stamp.blue{ border-color:var(--blue-deep); color:var(--blue-deep); transform:rotate(1deg); background:repeating-linear-gradient(135deg, transparent, transparent 5px, rgba(28,66,87,0.05) 5px, rgba(28,66,87,0.05) 10px);}
+
+  /* ---------- Workflow steps ---------- */
+  .flow{ counter-reset: step; margin:20px 0; }
+  .flow-step{
+    display:grid; grid-template-columns:40px 1fr; gap:16px;
+    padding:14px 0;
+    border-bottom:1px dashed var(--grid-line);
+  }
+  .flow-step:last-child{ border-bottom:none; }
+  .flow-step .step-num{
+    counter-increment:step;
+    font-family:'Oswald', sans-serif; font-weight:700; font-size:16px;
+    color:var(--blue-deep);
+    background:var(--paper-raised);
+    border:1.5px solid var(--blue-deep);
+    border-radius:50%;
+    width:36px; height:36px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .flow-step .step-num::before{ content: counter(step); }
+  .flow-step .step-body b{ display:block; font-size:15px; margin-bottom:2px; }
+  .flow-step .step-body span{ color:var(--ink-soft); font-size:14px; }
+
+  /* ---------- Workflow comparison ---------- */
+  .compare-wrap{ overflow-x:auto; margin:18px 0; border:1.5px solid var(--grid-line); border-radius: var(--radius); background:var(--paper-raised); }
+  table.compare{ width:100%; border-collapse:collapse; font-size:14px; }
+  table.compare th{
+    text-align:left; padding:12px 16px; border-bottom:1.5px solid var(--grid-line);
+    font-family:'Oswald', sans-serif; font-size:14px; letter-spacing:0.02em; text-transform:none;
+  }
+  table.compare th.current-head{ background:var(--green-bg); color:#2A5738; }
+  table.compare th.future-head{ background:var(--amber-bg); color:#6B4C13; }
+  table.compare th .badge{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.05em;
+    text-transform:uppercase; padding:2px 7px; border-radius:10px; margin-left:8px; vertical-align:2px;
+  }
+  table.compare th.current-head .badge{ background:var(--green); color:#fff; }
+  table.compare th.future-head .badge{ background:var(--amber); color:#fff; }
+  table.compare td{ padding:12px 16px; border-bottom:1px solid var(--grid-line); vertical-align:top; width:50%; }
+  table.compare tr:last-child td{ border-bottom:none; }
+  table.compare td.diff{ background:#FCF7EC; }
+  table.compare td .step-tag{
+    display:block; font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--ink-faint);
+    text-transform:uppercase; letter-spacing:0.05em; margin-bottom:3px;
+  }
+
+  /* ---------- Tables ---------- */
+  .table-wrap{ overflow-x:auto; margin:18px 0; border:1.5px solid var(--grid-line); border-radius: var(--radius); background:var(--paper-raised); }
+  table{ width:100%; border-collapse:collapse; font-size:14px; }
+  th{
+    text-align:left; font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+    letter-spacing:0.05em; text-transform:uppercase;
+    background:#EAF0F1; color:var(--blue-deep);
+    padding:10px 14px; border-bottom:1.5px solid var(--grid-line);
+  }
+  td{ padding:10px 14px; border-bottom:1px solid var(--grid-line); color:var(--ink); vertical-align:top; }
+  tr:last-child td{ border-bottom:none; }
+  td.mono, th.mono{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ---------- Checklist (interactive, session-only) ---------- */
+  .checklist{ list-style:none; padding:0; margin:18px 0; }
+  .checklist li{
+    display:flex; align-items:flex-start; gap:10px;
+    padding:10px 12px; border-radius:8px; margin-bottom:4px;
+    cursor:pointer; user-select:none;
+    border:1px solid transparent;
+  }
+  .checklist li:hover{ background:var(--paper-raised); border-color:var(--grid-line); }
+  .checklist .box{
+    flex-shrink:0; width:19px; height:19px; margin-top:1px;
+    border:2px solid var(--blue-deep); border-radius:5px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; color:#fff; font-weight:700;
+    background:var(--paper-raised);
+  }
+  .checklist li.checked .box{ background:var(--green); border-color:var(--green); }
+  .checklist li.checked .box::after{ content:"✓"; }
+  .checklist li.checked span{ color:var(--ink-faint); text-decoration:line-through; }
+
+  /* ---------- Filename example ---------- */
+  .filename-card{
+    font-family:'IBM Plex Mono', monospace;
+    background:var(--blue-deep); color:#EAF3F6;
+    border-radius: var(--radius);
+    padding:18px 20px;
+    font-size:13.5px;
+    margin:14px 0;
+    line-height:1.8;
+  }
+  .filename-card .tag{ color:#8FC3D8; }
+  .filename-card .divider{ opacity:0.5; margin:0 6px; }
+
+  footer{
+    grid-column:1/-1;
+    text-align:center;
+    padding:30px 20px 50px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-faint);
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <header class="hero">
+    <div class="grid-overlay"></div>
+    <div class="hero-inner">
+      <div class="eyebrow"><span class="dot"></span>Standard Operating Procedure</div>
+      <h1>City of Atlanta Third-Party Inspection Reports</h1>
+      <p class="hero-sub">How we prepare, check, and hand off Third-Party Inspection Reports after Khaled completes a site visit — from intake through file naming.</p>
+      <div class="hero-meta">
+        <span class="meta-chip">Owner: <b>Rogers Hollow</b></span>
+        <span class="meta-chip">Site visits by: <b>Khaled</b></span>
+        <span class="meta-chip">Submission SLA: <b>2 days</b></span>
+        <span class="meta-chip">Status: <b>Current workflow active</b></span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="toc">
+    <p class="toc-label">On this page</p>
+    <a href="#purpose">Purpose</a>
+    <a href="#workflow-compare">Current vs. Future</a>
+    <a href="#info-needed">Info Needed From Khaled</a>
+    <a href="#correct-form">Correct Form to Use</a>
+    <a href="#form-rules">Main Form Rules</a>
+    <a href="#inspection-date">Inspection Date</a>
+    <a href="#permit-guide">Permit &amp; Code Guide</a>
+    <a href="#fill-out">How to Fill Out the Report</a>
+    <a href="#combining">Combining Inspections</a>
+    <a href="#building-final">Building Final Rule</a>
+    <a href="#fire">Fire / Sprinkler Notes</a>
+    <a href="#signature-pages">Signature &amp; Supporting Pages</a>
+    <a href="#checklist">Before Sending Checklist</a>
+    <a href="#filenaming">File Naming Format</a>
+    <a href="#open-items">Items to Confirm</a>
+  </nav>
+
+  <main>
+
+    <section id="purpose">
+      <h2><span class="num">1</span>Purpose</h2>
+      <p>This SOP covers how we prepare City of Atlanta third-party inspection reports after Khaled completes a site visit.</p>
+      <p>Right now, our job stops at preparing the report. We fill it out, save it in the correct project folder, and send it to Khaled — <b>Khaled handles the actual city submission</b> unless he tells us otherwise.</p>
+    </section>
+
+    <section id="workflow-compare">
+      <h2><span class="num">2</span>Current vs. Future: What Changes</h2>
+      <p class="section-intro">Side-by-side so it's easy to see exactly what shifts once Khaled activates direct city submission. Steps 1–3 stay the same either way — the difference starts at step 4.</p>
+      <div class="compare-wrap">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th class="current-head">Current Workflow <span class="badge">Active</span></th>
+              <th class="future-head">Future Workflow <span class="badge">Pending</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="step-tag">Step 1</span>Khaled completes the site inspection.</td>
+              <td><span class="step-tag">Step 1</span>Khaled completes the site inspection.</td>
+            </tr>
+            <tr>
+              <td><span class="step-tag">Step 2</span>Khaled sends the inspection details by email.</td>
+              <td><span class="step-tag">Step 2</span>Khaled sends the inspection details by email.</td>
+            </tr>
+            <tr>
+              <td><span class="step-tag">Step 3</span>We prepare the City of Atlanta third-party inspection report.</td>
+              <td><span class="step-tag">Step 3</span>We prepare the inspection report.</td>
+            </tr>
+            <tr>
+              <td class="diff"><span class="step-tag">Step 4</span>We save the completed report in the correct project folder.</td>
+              <td class="diff"><span class="step-tag">Step 4</span>We submit the report directly to the city.</td>
+            </tr>
+            <tr>
+              <td class="diff"><span class="step-tag">Step 5</span>We send the completed report to Khaled for his review and submission.</td>
+              <td class="diff"><span class="step-tag">Step 5</span>We save the submitted copy and proof of submission.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout-stop">
+        <span class="icon">STOP</span>
+        <span>We're on the Current Workflow (left column) until Khaled explicitly confirms otherwise. Don't switch to the Future Workflow on your own.</span>
+      </div>
+    </section>
+
+    <section id="info-needed">
+      <h2><span class="num">3</span>Information Needed From Khaled</h2>
+      <p class="section-intro">Before starting a report, confirm all of the following are available. If anything is missing or unclear, check with Khaled before finalizing.</p>
+      <ul>
+        <li>Project / job address</li>
+        <li>Contractor or client company name</li>
+        <li>General contractor name</li>
+        <li>Building permit number</li>
+        <li>Trade permit number</li>
+        <li>Inspection type</li>
+        <li>Inspection code</li>
+        <li>Inspection result</li>
+        <li>Any notes or special instructions</li>
+      </ul>
+    </section>
+
+    <section id="correct-form">
+      <h2><span class="num">4</span>Correct Form to Use</h2>
+      <p>Use the official <b>colored City of Atlanta Third-Party Inspection Report form</b> — the PDF version, whenever possible.</p>
+      <p>
+        <a href="https://www.atlantaga.gov/home/showdocument?id=54712&t=637834502141270000" target="_blank" rel="noopener" class="stamp blue" style="text-decoration:none;">
+          ⬇ Download Official Form (PDF) — atlantaga.gov
+        </a>
+      </p>
+      <p style="font-size:13px; color:var(--ink-faint); margin-top:-6px;">Sourced from the City of Atlanta's Third-Party Inspections page. If the city updates the form, re-confirm this link still points to the current version.</p>
+      <div class="callout callout-stop">
+        <span class="icon">AVOID</span>
+        <span>Don't use the Google Docs version if its formatting looks different or distorted from the official form.</span>
+      </div>
+      <div class="callout callout-confirm">
+        <span class="icon">CONFIRM</span>
+        <span>If the project folder has multiple versions, use whichever one Khaled has confirmed as the correct city form.</span>
+      </div>
+    </section>
+
+    <section id="form-rules">
+      <h2><span class="num">5</span>Main Form Rules</h2>
+
+      <h3>Building permit</h3>
+      <p>The building permit number always goes at the top of the report — even for electrical, mechanical, or plumbing inspections.</p>
+
+      <h3>Trade permit</h3>
+      <p>The trade permit must match the actual inspection type:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Inspection Type</th><th>Permit to Use</th></tr></thead>
+          <tbody>
+            <tr><td>Electrical</td><td>Electrical permit</td></tr>
+            <tr><td>Mechanical</td><td>Mechanical permit</td></tr>
+            <tr><td>Plumbing</td><td>Plumbing permit</td></tr>
+            <tr><td>Building / Framing</td><td>Building permit</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="inspection-date">
+      <h2><span class="num">6</span>Inspection Date</h2>
+      <p>City of Atlanta reports need to go out within <b>2 days</b> of the inspection.</p>
+      <p>Use the inspection or report date Khaled provides.</p>
+      <div class="callout callout-stop">
+        <span class="icon">STOP</span>
+        <span>Never guess the date — not even if the site visit clearly happened earlier or the date seems unclear. Confirm with Khaled instead.</span>
+      </div>
+    </section>
+
+    <section id="permit-guide">
+      <h2><span class="num">7</span>Permit &amp; Code Guide</h2>
+      <p class="section-intro">A general reference — not a substitute for confirming exact numbers with Khaled or the permit list.</p>
+
+      <h3>Code series</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="mono">Code Series</th><th>Category</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">100</td><td>Building</td></tr>
+            <tr><td class="mono">200</td><td>Electrical</td></tr>
+            <tr><td class="mono">400</td><td>Mechanical</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Permit prefixes</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th class="mono">Prefix</th><th>Permit Type</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">BP / BB</td><td>Building permit — confirm exact prefix with Khaled</td></tr>
+            <tr><td class="mono">BE</td><td>Electrical permit</td></tr>
+            <tr><td class="mono">BM</td><td>Mechanical permit</td></tr>
+            <tr><td class="mono">—</td><td>Plumbing permit — confirm prefix from the permit list</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout-confirm">
+        <span class="icon">CONFIRM</span>
+        <span>Whenever a prefix or code isn't clear, check the permit list first, then confirm with Khaled — don't guess.</span>
+      </div>
+    </section>
+
+    <section id="fill-out">
+      <h2><span class="num">8</span>How to Fill Out the Report</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th style="width:32%">Field</th><th>What to enter</th></tr></thead>
+          <tbody>
+            <tr><td><b>Client Name</b></td><td>The contractor or company name Khaled provides.</td></tr>
+            <tr><td><b>Date</b></td><td>The inspection / report date Khaled provides.</td></tr>
+            <tr><td><b>Job Address</b></td><td>From Khaled, the plan cover sheet, or the permit sheet.</td></tr>
+            <tr><td><b>General Contractor</b></td><td>Name Khaled provides — may be the same as the contractor/client name.</td></tr>
+            <tr><td><b>Building Permit Number</b></td><td>Always enter it, regardless of inspection type.</td></tr>
+            <tr><td><b>Trade Permit Number</b></td><td>The permit number specific to the inspection being reported.</td></tr>
+            <tr><td><b>Inspection Type</b></td><td>Mark the type and code Khaled provides.</td></tr>
+            <tr><td><b>Inspection Category</b></td><td>Use the second option on the form, unless Khaled says otherwise.</td></tr>
+            <tr><td><b>Regular / Re-Inspection</b></td><td>Select "Regular Inspection" unless Khaled specifically says it's a re-inspection.</td></tr>
+            <tr><td><b>Inspection Result</b></td><td>Passed, Failed, or Partial — exactly as Khaled reports it.</td></tr>
+            <tr><td><b>Comments / Permit Notes</b></td><td>List the related trade permit number. For building final, list all related permits.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout-stop">
+        <span class="icon">STOP</span>
+        <span>Never choose the inspection result yourself — always use exactly what Khaled reports.</span>
+      </div>
+    </section>
+
+    <section id="combining">
+      <h2><span class="num">9</span>Combining Inspections</h2>
+      <p>Some inspections can go in one report — but only if Khaled confirms they were completed together on the same visit.</p>
+      <p><b>Examples:</b></p>
+      <ul>
+        <li>Electrical ditch + electrical slab</li>
+        <li>Mechanical final + electrical final + plumbing final</li>
+      </ul>
+      <div class="callout callout-stop">
+        <span class="icon">STOP</span>
+        <span>Never combine inspections on your own judgment — Khaled's confirmation is required every time.</span>
+      </div>
+    </section>
+
+    <section id="building-final">
+      <h2><span class="num">10</span>Building Final Rule</h2>
+      <div class="callout callout-stop">
+        <span class="icon">RULE</span>
+        <span>Building final must always be its own, separate report. Never combine it with mechanical final, electrical final, plumbing final, or any other inspection type.</span>
+      </div>
+      <p>For building final, list all related permits in the report, including:</p>
+      <ul>
+        <li>Building permit</li>
+        <li>Electrical permit</li>
+        <li>Mechanical permit</li>
+        <li>Plumbing permit</li>
+        <li>Sprinkler / fire permit, if applicable</li>
+      </ul>
+    </section>
+
+    <section id="fire">
+      <h2><span class="num">11</span>Fire / Sprinkler Notes</h2>
+      <p>We typically don't handle fire inspections — those go through the city or fire marshal directly.</p>
+      <p>That said, sprinkler or fire permit details may still need to appear on building final reports.</p>
+      <div class="callout callout-confirm">
+        <span class="icon">CONFIRM</span>
+        <span>Confirm with Khaled before adding any fire or sprinkler permit info, unless he's already given clear instructions for that report.</span>
+      </div>
+    </section>
+
+    <section id="signature-pages">
+      <h2><span class="num">12</span>Signature &amp; Supporting Pages</h2>
+      <p>Usually only the <b>first page</b> of the report needs updating per inspection.</p>
+      <p>The remaining pages hold company details, insurance, certifications, and authorization documents. Khaled provides these or lets us know when they need updating — and they may need to be refreshed yearly.</p>
+    </section>
+
+    <section id="checklist">
+      <h2><span class="num">13</span>Before Sending the Report</h2>
+      <p class="section-intro">Run through this before sending anything to Khaled. Click an item to check it off (for your own tracking on this page — not saved).</p>
+      <ul class="checklist" id="preSendChecklist">
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>Correct city form used</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>Formatting is clean and not distorted</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>Client / contractor name entered</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>Job address entered</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>General contractor entered</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>Building permit listed at the top</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>Correct trade permit entered</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>Correct inspection code marked</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>Correct result selected</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>Building final separated, if applicable</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>Signature and date included</span></li>
+        <li onclick="toggleCheck(this)"><span class="box"></span><span>File saved in the correct project folder</span></li>
+      </ul>
+    </section>
+
+    <section id="filenaming">
+      <h2><span class="num">14</span>File Naming Format</h2>
+      <p>Use this format for every saved report:</p>
+      <div class="filename-card">
+        <span class="tag">YYYY-MM-DD</span><span class="divider">–</span><span class="tag">Job Address</span><span class="divider">–</span><span class="tag">Inspection Type</span><span class="divider">–</span><span class="tag">Permit Number</span>
+      </div>
+      <p><b>Example:</b></p>
+      <div class="filename-card">2026-06-18 – 340 East Wesley Ferry – Electrical Ditch and Slab – BE123456</div>
+    </section>
+
+    <section id="open-items">
+      <h2><span class="num">15</span>Items to Confirm With Khaled</h2>
+      <p class="section-intro">These are open questions — not yet settled. Get answers before treating any related rule above as final.</p>
+      <ul>
+        <li>Exact permit prefix rules for building permits</li>
+        <li>Whether to use inspection date or report date when the site visit happened earlier</li>
+        <li>Which city form should be treated as the master copy</li>
+        <li>Current inspector / company / signature details</li>
+        <li>When we should start submitting directly to the city</li>
+        <li>City submission email and preferred subject line format</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>SOP prepared for internal use · Rogers Hollow · City of Atlanta Third-Party Inspection Reports · v1.1</footer>
+</div>
+
+<script>
+  function toggleCheck(el){ el.classList.toggle('checked'); }
+
+  // Scroll-spy for TOC
+  const sections = document.querySelectorAll('main section');
+  const links = document.querySelectorAll('nav.toc a');
+  const map = {};
+  links.forEach(l => map[l.getAttribute('href').slice(1)] = l);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = map[entry.target.id];
+      if(!link) return;
+      if(entry.isIntersecting){
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
